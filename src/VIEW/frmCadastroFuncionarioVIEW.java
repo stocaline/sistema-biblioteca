@@ -192,7 +192,7 @@ public class frmCadastroFuncionarioVIEW extends javax.swing.JFrame {
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
         if (validaCamposFuncionario()== true) {
-            cadastrarProfessor();
+            cadastrarFuncionario();
             JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso");
             dispose();
         }
@@ -270,8 +270,8 @@ public class frmCadastroFuncionarioVIEW extends javax.swing.JFrame {
         return validador;
     }
 
-    private void cadastrarProfessor() {
-        String nome, senha, endereco, email;
+    private void cadastrarFuncionario() {
+        String nome, senha, endereco, email, tipo;
         int cpf, registroFuncionario, salario;
 
         nome = txtNomeFuncionario.getText();
@@ -281,6 +281,7 @@ public class frmCadastroFuncionarioVIEW extends javax.swing.JFrame {
         registroFuncionario = Integer.parseInt(txtRegistroFuncionario.getText());
         cpf = Integer.parseInt(txtCpfFuncionario.getText());
         salario = Integer.parseInt(txtSalarioFuncionario.getText());
+        tipo = "Funcionário";
 
         FuncionarioDTO objfuncionariodto = new FuncionarioDTO();
         objfuncionariodto.setNome(nome);
@@ -290,7 +291,8 @@ public class frmCadastroFuncionarioVIEW extends javax.swing.JFrame {
         objfuncionariodto.setCpf(cpf);
         objfuncionariodto.setSalario(salario);
         objfuncionariodto.setRegistro_funciona(registroFuncionario);
-
+        objfuncionariodto.setTipo(tipo);
+        
         FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
         objfuncionariodao.cadastrarFuncionario(objfuncionariodto);
     }

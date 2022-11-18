@@ -13,6 +13,7 @@ public class PessoaDTO {
     private String email;
     private int cpf;
     private int idLivro;
+    private String tipo;
 
     public int getId() {
         return id;
@@ -68,6 +69,14 @@ public class PessoaDTO {
 
     public void setIdLivro(int idLivro) {
         this.idLivro = idLivro;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

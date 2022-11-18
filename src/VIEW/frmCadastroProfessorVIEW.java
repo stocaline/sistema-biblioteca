@@ -141,9 +141,9 @@ public class frmCadastroProfessorVIEW extends javax.swing.JFrame {
                     .addComponent(txtNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSenhaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +262,7 @@ public class frmCadastroProfessorVIEW extends javax.swing.JFrame {
     }
 
     private void cadastrarProfessor() {
-        String nome, senha, endereco, email, materia;
+        String nome, senha, endereco, email, materia, tipo;
         int cpf, matriculaProfessor;
 
         nome = txtNomeProfessor.getText();
@@ -272,6 +272,7 @@ public class frmCadastroProfessorVIEW extends javax.swing.JFrame {
         materia = txtMateriaProfessor.getText();
         cpf = Integer.parseInt(txtCpfProfessor.getText());
         matriculaProfessor = Integer.parseInt(txtMatriculaProfessor.getText());
+        tipo = "Professor";
 
         ProfessorDTO objprofessordto = new ProfessorDTO();
         objprofessordto.setNome(nome);
@@ -281,6 +282,7 @@ public class frmCadastroProfessorVIEW extends javax.swing.JFrame {
         objprofessordto.setMateria(materia);
         objprofessordto.setCpf(cpf);
         objprofessordto.setMatriculaProfessor(matriculaProfessor);
+        objprofessordto.setTipo(tipo);
 
         ProfessorDAO objprofessordao = new ProfessorDAO();
         objprofessordao.cadastrarProfessor(objprofessordto);
