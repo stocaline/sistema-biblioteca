@@ -17,7 +17,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
     public frmLoginVIEW() {
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -186,40 +186,49 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private void Logar() throws SQLException {
         int controlador = 0;
         try {
-            String nome_usuario, senha_usuario;
+            String nome_usuario, senha_usuario, NOME_ADMIN, SENHA_ADMIN;
 
             nome_usuario = txtNomeUsuario.getText();
             senha_usuario = txtSenhaUsuario.getText();
+            NOME_ADMIN = "admin";
+            SENHA_ADMIN = "admin@admin";
 
-            UsuarioDTO objusuarioDTO = new UsuarioDTO();
-            objusuarioDTO.setNome_usuario(nome_usuario);
-            objusuarioDTO.setSenha_usuario(senha_usuario);
-
-            FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-            ProfessorDAO objprofessordao = new ProfessorDAO();
-
-            ResultSet rsfuncionariodao = objfuncionariodao.autenticacaoFuncionario(objusuarioDTO);
-            ResultSet rsprofessordao = objprofessordao.autenticacaoProfessor(objusuarioDTO);
-            
-            
-            if (rsfuncionariodao.next()) {
-                controlador = 1;
-                frmFuncionarioVIEW objfrmfuncionarioview = new frmFuncionarioVIEW();
-                objfrmfuncionarioview.setVisible(true);
+            if (NOME_ADMIN.equals(nome_usuario) && SENHA_ADMIN.equals(senha_usuario)) {
+                frmAdminVIEW frmadminview = new frmAdminVIEW();
+                frmadminview.setVisible(true);
 
                 dispose();
-            }
-            
-            if (rsprofessordao.next()) {
-                controlador = 1;
-                frmProfessorVIEW objprofessorview = new frmProfessorVIEW();
-                objprofessorview.setVisible(true);
+            } else {
 
-                dispose();
-            }
-            
-            if (controlador != 1) {
-                JOptionPane.showMessageDialog(null, "Usuario ou senha inválida");
+                UsuarioDTO objusuarioDTO = new UsuarioDTO();
+                objusuarioDTO.setNome_usuario(nome_usuario);
+                objusuarioDTO.setSenha_usuario(senha_usuario);
+
+                FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
+                ProfessorDAO objprofessordao = new ProfessorDAO();
+
+                ResultSet rsfuncionariodao = objfuncionariodao.autenticacaoFuncionario(objusuarioDTO);
+                ResultSet rsprofessordao = objprofessordao.autenticacaoProfessor(objusuarioDTO);
+
+                if (rsfuncionariodao.next()) {
+                    controlador = 1;
+                    frmFuncionarioVIEW objfrmfuncionarioview = new frmFuncionarioVIEW();
+                    objfrmfuncionarioview.setVisible(true);
+
+                    dispose();
+                }
+
+                if (rsprofessordao.next()) {
+                    controlador = 1;
+                    frmProfessorVIEW objprofessorview = new frmProfessorVIEW();
+                    objprofessorview.setVisible(true);
+
+                    dispose();
+                }
+
+                if (controlador != 1) {
+                    JOptionPane.showMessageDialog(null, "Usuario ou senha inválida");
+                }
             }
 
         } catch (SQLException erro) {

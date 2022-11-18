@@ -12,11 +12,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author stocaline
  */
-public class frmFuncionarioVIEW extends javax.swing.JFrame {
+public class frmAdminVIEW extends javax.swing.JFrame {
 
     private int id;
 
-    public frmFuncionarioVIEW() {
+    public frmAdminVIEW() {
         initComponents();
         listarValoresUsuarios();
     }
@@ -29,7 +29,8 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         tabelaUsuarios = new javax.swing.JTable();
         btnConsultar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtTeste = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +47,7 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelaUsuarios);
 
-        btnConsultar.setText("Consultar");
+        btnConsultar.setText("Editar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -56,9 +57,13 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setText("Usuários:");
 
-        txtTeste.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setText("Entrou como Adiministrador");
+
+        jButton1.setText("Atualizar Tabela");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTesteActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -67,32 +72,32 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnConsultar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(695, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnConsultar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConsultar)
                     .addComponent(jLabel3)
-                    .addComponent(btnConsultar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,9 +107,9 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         consultarCampos();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void txtTesteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTesteActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTesteActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -120,14 +125,15 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAdminVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAdminVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAdminVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAdminVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -139,10 +145,11 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaUsuarios;
-    private javax.swing.JTextField txtTeste;
     // End of variables declaration//GEN-END:variables
 
     public int getId() {
@@ -153,16 +160,27 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
         this.id = id;
     }
 
-    private void listarValoresUsuarios() {
+    public void listarValoresUsuarios() {
         try {
+            FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
             ProfessorDAO objprofessordao = new ProfessorDAO();
 
             DefaultTableModel model = (DefaultTableModel) tabelaUsuarios.getModel();
             model.setNumRows(0);
 
+            int controladorListaFuncionario;
             int controladorListaProfessor;
+            ArrayList<FuncionarioDTO> listaFuncionario = objfuncionariodao.consultarTodosFuncionarios();
             ArrayList<ProfessorDTO> listaProfessor = objprofessordao.consultarTodosProfessores();
 
+            for (controladorListaFuncionario = 0; controladorListaFuncionario < listaFuncionario.size(); controladorListaFuncionario++) {
+                model.addRow(new Object[]{
+                    listaFuncionario.get(controladorListaFuncionario).getId(),
+                    listaFuncionario.get(controladorListaFuncionario).getNome(),
+                    listaFuncionario.get(controladorListaFuncionario).getTipo(),
+                    listaFuncionario.get(controladorListaFuncionario).getIdLivro()
+                });
+            }
             for (controladorListaProfessor = 0; controladorListaProfessor < listaProfessor.size(); controladorListaProfessor++) {
                 model.addRow(new Object[]{
                     listaProfessor.get(controladorListaProfessor).getId(),
@@ -178,15 +196,46 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
     }
 
     private void consultarCampos() {
+        String TIPO_FUNCIONARIO = "Funcionário";
         String TIPO_PROFESSOR = "Professor";
         int setar = tabelaUsuarios.getSelectedRow();
         setId((int) tabelaUsuarios.getModel().getValueAt(setar, 0));
         String tipoUsuarioProcurado = tabelaUsuarios.getModel().getValueAt(setar, 2).toString();
+        
+        if (TIPO_FUNCIONARIO.equals(tipoUsuarioProcurado)) {
+            frmEditarFuncionarioVIEW objeditarfuncionarioview = new frmEditarFuncionarioVIEW();
+            objeditarfuncionarioview.setVisible(true);
+            objeditarfuncionarioview.mostrarFuncionario(getId());
+        }
 
         if (TIPO_PROFESSOR.equals(tipoUsuarioProcurado)) {
-            frmEditarProfessorVIEW objfrmeditarprofessorview = new frmEditarProfessorVIEW();
-            objfrmeditarprofessorview.setVisible(true);
-            objfrmeditarprofessorview.mostrarProfessor(id);
+            frmEditarProfessorVIEW objeditarprofessorview = new frmEditarProfessorVIEW();
+            objeditarprofessorview.setVisible(true);
+            objeditarprofessorview.mostrarProfessor(getId());
         }
+
     }
+
+//    private void consultarCampos() {
+//        String TIPO_FUNCIONARIO = "Funcionário";
+//        String TIPO_PROFESSOR = "Professor";
+//        int setar = tabelaUsuarios.getSelectedRow();
+//        int idUsuarioProcurado = (int) tabelaUsuarios.getModel().getValueAt(setar, 0);
+//        String tipoUsuarioProcurado = tabelaUsuarios.getModel().getValueAt(setar, 2).toString();
+//
+//        if (TIPO_FUNCIONARIO.equals(tipoUsuarioProcurado)) {
+//            FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
+//            FuncionarioDTO funcionario = objfuncionariodao.consultarFuncionario(idUsuarioProcurado);
+//            txtTeste.setText(funcionario.getNome());
+//            frmEditarFuncionarioVIEW objeditarfuncionarioview = new frmEditarFuncionarioVIEW();
+//            objeditarfuncionarioview.setVisible(true);
+//        }
+//        
+//        if (TIPO_PROFESSOR.equals(tipoUsuarioProcurado)) {
+//            ProfessorDAO objprofessordao = new ProfessorDAO();
+//            ProfessorDTO professor = objprofessordao.consultarProfessor(idUsuarioProcurado);
+//            txtTeste.setText(professor.getNome());
+//        }
+//
+//    }
 }

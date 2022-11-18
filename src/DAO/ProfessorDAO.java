@@ -85,7 +85,7 @@ public class ProfessorDAO {
     }
 
     public ProfessorDTO consultarProfessor(int id) {
-        String sql = "SELECT id, nome FROM professor WHERE id = ?";
+        String sql = "SELECT * FROM professor WHERE id = ?";
         conn = new ConexaoDAO().conectaBD();
 
         try {
@@ -98,23 +98,66 @@ public class ProfessorDAO {
                 ProfessorDTO objprofessordto = new ProfessorDTO();
                 objprofessordto.setId(rs.getInt("id"));
                 objprofessordto.setNome(rs.getString("nome"));
-
+                objprofessordto.setSenha(rs.getString("senha"));
+                objprofessordto.setEndereco(rs.getString("endereco"));
+                objprofessordto.setEmail(rs.getString("email"));
+                objprofessordto.setCpf(rs.getInt("cpf"));
+                objprofessordto.setMatriculaProfessor(rs.getInt("matricula_professor"));
+                objprofessordto.setMateria(rs.getString("materia"));
+                objprofessordto.setIdLivro(rs.getInt("id_livro"));
                 professor = objprofessordto;
             }
 
-//            objfuncionarioDTO.setTipo(rs.getString("tipo"));
-//            objfuncionarioDTO.setIdLivro(rs.getInt("id_livro"));
-//            objfuncionarioDTO.setCpf(rs.getInt("id_livro"));
-//            objfuncionarioDTO.setEmail(rs.getString("nome"));
-//            objfuncionarioDTO.setEndereco(rs.getString("nome"));
-//            objfuncionarioDTO.setSalario(rs.getInt("id_livro"));
-//            objfuncionarioDTO.setRegistro_funciona(rs.getInt("id_livro"));
             return professor;
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "FuncionarioDAO consultar: " + erro);
+            JOptionPane.showMessageDialog(null, "ProfessorDAO consultar: " + erro);
         }
         return null;
     }
 
+        public void alterarProfessor(ProfessorDTO objprofessordto) {
+        String sql = "UPDATE funcionario set nome = ?, senha = ?, endereco = ?, email = ?, cpf = ?, matricula_professor = ?, materia = ? WHERE id = ?";
+
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objprofessordto.getNome());
+            pstm.setString(2, objprofessordto.getSenha());
+            pstm.setString(3, objprofessordto.getEndereco());
+            pstm.setString(4, objprofessordto.getEmail());
+            pstm.setInt(5, objprofessordto.getCpf());
+            pstm.setInt(6, objprofessordto.getMatriculaProfessor());
+            pstm.setString(7, objprofessordto.getMateria());
+            pstm.setInt(8, objprofessordto.getId());
+
+            pstm.execute();
+            pstm.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ProfessorDAO alterar: " + erro);
+        }
+
+    }
+            public void excluirProfessor(ProfessorDTO objprofessordto) {
+        String sql = "DELETE FROM professor WHERE id = ?";
+
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, objprofessordto.getId());
+
+            pstm.execute();
+            pstm.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ProfessorDAO excluir: " + erro);
+        }
+
+    }
+    
 }

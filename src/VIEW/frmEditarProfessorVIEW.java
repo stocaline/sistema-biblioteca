@@ -1,16 +1,18 @@
 package VIEW;
 
 import DAO.FuncionarioDAO;
+import DAO.ProfessorDAO;
 import DTO.FuncionarioDTO;
+import DTO.ProfessorDTO;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author stocaline
  */
-public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
+public class frmEditarProfessorVIEW extends javax.swing.JFrame {
 
-    public frmEditarFuncionarioVIEW() {
+    public frmEditarProfessorVIEW() {
         initComponents();
     }
 
@@ -32,9 +34,9 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        txtSalario = new javax.swing.JTextField();
+        txtMateria = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
-        txtRegistroFuncionario = new javax.swing.JTextField();
+        txtMatriculaProfessor = new javax.swing.JTextField();
         txtCpf = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
         btnDeletar = new javax.swing.JButton();
@@ -42,7 +44,7 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("Editar Funcionario");
+        jLabel1.setText("Editar Professor");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +78,15 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
 
         jLabel7.setText("Cpf:");
 
-        jLabel8.setText("Registro do Funcionário:");
+        jLabel8.setText("Matricula Professor:");
 
-        jLabel9.setText("Salário:");
+        jLabel9.setText("Matéria:");
+
+        txtMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMateriaActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
@@ -89,7 +97,7 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
         });
 
         btnDeletar.setForeground(new java.awt.Color(255, 0, 0));
-        btnDeletar.setText("Deletar Funcionario");
+        btnDeletar.setText("Deletar Professor");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeletarActionPerformed(evt);
@@ -110,9 +118,9 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(146, 146, 146)
+                                .addGap(159, 159, 159)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 182, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -131,13 +139,13 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                                             .addComponent(jLabel9)
                                             .addComponent(jLabel8)
                                             .addComponent(txtEmail)
-                                            .addComponent(txtSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                                            .addComponent(txtMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(47, 47, 47)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnEditar)
-                                            .addComponent(txtRegistroFuncionario))))
+                                            .addComponent(txtMatriculaProfessor))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -155,10 +163,10 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -168,7 +176,7 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,8 +193,8 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegistroFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(txtMatriculaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnEditar)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -211,19 +219,23 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (validaCamposFuncionario() == true) {
-            alterarFuncionario();
-            JOptionPane.showMessageDialog(null, "Funcionário Alterado com Sucesso");
+        if (validaCamposProfessor() == true) {
+            alterarProfessor();
+            JOptionPane.showMessageDialog(null, "Professor Alterado com Sucesso");
             dispose();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        excluirFuncionario();
-        JOptionPane.showMessageDialog(null, "Funcionário Deletado com Sucesso");
+        excluirProfessor();
+        JOptionPane.showMessageDialog(null, "Professor Deletado com Sucesso");
         dispose();
 
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMateriaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -239,21 +251,23 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmEditarFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEditarProfessorVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmEditarFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEditarProfessorVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmEditarFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEditarProfessorVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmEditarFuncionarioVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEditarProfessorVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmEditarFuncionarioVIEW().setVisible(true);
+                new frmEditarProfessorVIEW().setVisible(true);
             }
         });
     }
@@ -275,60 +289,60 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtMateria;
+    private javax.swing.JTextField txtMatriculaProfessor;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtRegistroFuncionario;
-    private javax.swing.JTextField txtSalario;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
-    public void mostrarFuncionario(int id) {
-        FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-        FuncionarioDTO funcionario = objfuncionariodao.consultarFuncionario(id);
-        txtId.setText(String.valueOf(funcionario.getId()));
-        txtNome.setText(funcionario.getNome());
-        txtSenha.setText(funcionario.getSenha());
-        txtEndereco.setText(funcionario.getEndereco());
-        txtSalario.setText(String.valueOf(funcionario.getSalario()));
-        txtEmail.setText(funcionario.getEmail());
-        txtRegistroFuncionario.setText(String.valueOf(funcionario.getRegistro_funciona()));
-        txtCpf.setText(String.valueOf(funcionario.getCpf()));
+    public void mostrarProfessor(int id) {
+        ProfessorDAO objprofessordao = new ProfessorDAO();
+        ProfessorDTO professor = objprofessordao.consultarProfessor(id);
+        txtId.setText(String.valueOf(professor.getId()));
+        txtNome.setText(professor.getNome());
+        txtEndereco.setText(String.valueOf(professor.getCpf()));
+        txtSenha.setText(professor.getSenha());
+        txtMateria.setText(professor.getMateria());
+        txtEmail.setText(professor.getEmail());
+        txtMatriculaProfessor.setText(String.valueOf(professor.getMatriculaProfessor()));
+        txtCpf.setText(String.valueOf(professor.getCpf()));
     }
 
-    private void alterarFuncionario() {
-        int id, salario, registroFuncionario, cpf;
-        String nome, senha, endereco, email;
+    private void alterarProfessor() {
+        int id, matriculaProfessor, cpf;
+        String nome, senha, endereco, email, materia;
 
         id = Integer.parseInt(txtId.getText());
         nome = txtNome.getText();
         senha = txtSenha.getText();
         endereco = txtEndereco.getText();
-        salario = Integer.parseInt(txtSalario.getText());
+        materia = txtMateria.getText();
         email = txtEmail.getText();
-        registroFuncionario = Integer.parseInt(txtRegistroFuncionario.getText());
+        matriculaProfessor = Integer.parseInt(txtMatriculaProfessor.getText());
         cpf = Integer.parseInt(txtCpf.getText());
 
-        FuncionarioDTO objfuncionariodto = new FuncionarioDTO();
-        objfuncionariodto.setId(id);
-        objfuncionariodto.setNome(nome);
-        objfuncionariodto.setSenha(senha);
-        objfuncionariodto.setEndereco(endereco);
-        objfuncionariodto.setSalario(salario);
-        objfuncionariodto.setEmail(email);
-        objfuncionariodto.setRegistro_funciona(registroFuncionario);
-        objfuncionariodto.setCpf(cpf);
+        ProfessorDTO objprofessordto = new ProfessorDTO();
+        objprofessordto.setId(id);
+        objprofessordto.setNome(nome);
+        objprofessordto.setSenha(senha);
+        objprofessordto.setEndereco(endereco);
+        objprofessordto.setMateria(materia);
+        objprofessordto.setEmail(email);
+        objprofessordto.setMatriculaProfessor(matriculaProfessor);
+        objprofessordto.setCpf(cpf);
 
-        FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-        objfuncionariodao.alterarFuncionario(objfuncionariodto);
+        ProfessorDAO objprofessordao = new ProfessorDAO();
+        objprofessordao.alterarProfessor(objprofessordto);
     }
 
-    private Boolean validaCamposFuncionario() {
+    private Boolean validaCamposProfessor() {
         boolean validador;
         if ((!txtNome.getText().isEmpty())
                 && (!txtSenha.getText().isEmpty())
                 && (!txtEndereco.getText().isEmpty())
                 && (!txtEmail.getText().isEmpty())
-                && (!txtRegistroFuncionario.getText().isEmpty())
-                && (!txtSalario.getText().isEmpty())
+                && (!txtMatriculaProfessor.getText().isEmpty())
+                && (!txtMateria.getText().isEmpty())
                 && (!txtCpf.getText().isEmpty())) {
             validador = true;
         } else {
@@ -338,15 +352,15 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
         return validador;
     }
 
-    private void excluirFuncionario() {
+    private void excluirProfessor() {
         int id;
 
         id = Integer.parseInt(txtId.getText());
 
-        FuncionarioDTO objfuncionariodto = new FuncionarioDTO();
-        objfuncionariodto.setId(id);
-        FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-        objfuncionariodao.excluirFuncionario(objfuncionariodto);
+        ProfessorDTO objprofessordto = new ProfessorDTO();
+        objprofessordto.setId(id);
+        ProfessorDAO objprofessordao = new ProfessorDAO();
+        objprofessordao.excluirProfessor(objprofessordto);
     }
 
 }
