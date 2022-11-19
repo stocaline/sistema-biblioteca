@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class frmLoginVIEW extends javax.swing.JFrame {
 
+    private String nome_usuario;
+    private String senha_usuario;
+
     public frmLoginVIEW() {
         initComponents();
 
@@ -183,17 +186,33 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtSenhaUsuario;
     // End of variables declaration//GEN-END:variables
 
+    public String getNome_usuario() {
+        return nome_usuario;
+    }
+
+    public void setNome_usuario(String nome_usuario) {
+        this.nome_usuario = nome_usuario;
+    }
+
+    public String getSenha_usuario() {
+        return senha_usuario;
+    }
+
+    public void setSenha_usuario(String senha_usuario) {
+        this.senha_usuario = senha_usuario;
+    }
+
     private void Logar() throws SQLException {
         int controlador = 0;
         try {
-            String nome_usuario, senha_usuario, NOME_ADMIN, SENHA_ADMIN;
+            String NOME_ADMIN, SENHA_ADMIN;
 
-            nome_usuario = txtNomeUsuario.getText();
-            senha_usuario = txtSenhaUsuario.getText();
+            setNome_usuario(txtNomeUsuario.getText());
+            setSenha_usuario(txtSenhaUsuario.getText());
             NOME_ADMIN = "admin";
             SENHA_ADMIN = "admin@admin";
 
-            if (NOME_ADMIN.equals(nome_usuario) && SENHA_ADMIN.equals(senha_usuario)) {
+            if (NOME_ADMIN.equals(getNome_usuario()) && SENHA_ADMIN.equals(getSenha_usuario())) {
                 frmAdminVIEW frmadminview = new frmAdminVIEW();
                 frmadminview.setVisible(true);
 
@@ -201,8 +220,8 @@ public class frmLoginVIEW extends javax.swing.JFrame {
             } else {
 
                 UsuarioDTO objusuarioDTO = new UsuarioDTO();
-                objusuarioDTO.setNome_usuario(nome_usuario);
-                objusuarioDTO.setSenha_usuario(senha_usuario);
+                objusuarioDTO.setNome_usuario(getNome_usuario());
+                objusuarioDTO.setSenha_usuario(getSenha_usuario());
 
                 FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
                 ProfessorDAO objprofessordao = new ProfessorDAO();

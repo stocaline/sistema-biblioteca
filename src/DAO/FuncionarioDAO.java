@@ -20,6 +20,7 @@ public class FuncionarioDAO {
     ResultSet rs;
     ArrayList<FuncionarioDTO> lista = new ArrayList<>();
     FuncionarioDTO funcionario = new FuncionarioDTO();
+    int Idfuncionario;
 
     public void cadastrarFuncionario(FuncionarioDTO objfuncionariodto) {
         String sql = "INSERT INTO funcionario (nome, senha, endereco, email, cpf, registro_funcionario, salario, tipo) VALUES (?, ?, ? , ?, ?, ?, ?, ?)";
@@ -101,6 +102,32 @@ public class FuncionarioDAO {
         }
         return null;
     }
+    
+        public int consultarFuncionarioPorNomeSenha(String nome, String senha) {
+        String sql = "SELECT id FROM funcionario WHERE nome = ? && senha = ?";
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nome);
+            pstm.setString(2, senha);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                FuncionarioDTO objfuncionarioDTO = new FuncionarioDTO();
+                objfuncionarioDTO.setId(rs.getInt("id"));
+                Idfuncionario = objfuncionarioDTO.getId();
+            }
+
+            return Idfuncionario;
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "FuncionarioDAO consultar por nome e senha: " + erro);
+        }
+        return 0;
+    }
+    
 
     public ResultSet autenticacaoFuncionario(UsuarioDTO objusuarioDTO) {
         conn = new ConexaoDAO().conectaBD();

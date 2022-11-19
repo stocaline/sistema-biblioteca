@@ -88,6 +88,12 @@ public class frmEditarProfessorVIEW extends javax.swing.JFrame {
             }
         });
 
+        txtMatriculaProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatriculaProfessorActionPerformed(evt);
+            }
+        });
+
         btnEditar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +242,10 @@ public class frmEditarProfessorVIEW extends javax.swing.JFrame {
     private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMateriaActionPerformed
+
+    private void txtMatriculaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatriculaProfessorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

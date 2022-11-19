@@ -214,6 +214,8 @@ public class frmEditarFuncionarioVIEW extends javax.swing.JFrame {
         if (validaCamposFuncionario() == true) {
             alterarFuncionario();
             JOptionPane.showMessageDialog(null, "Funcionário Alterado com Sucesso");
+            frmFuncionarioVIEW objfuncionarioview = new frmFuncionarioVIEW();
+            objfuncionarioview.listarValoresUsuarios();
             dispose();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
