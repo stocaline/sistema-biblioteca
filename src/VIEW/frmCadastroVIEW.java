@@ -49,6 +49,11 @@ public class frmCadastroVIEW extends javax.swing.JFrame {
         });
 
         btnCadastroAluno.setText("Aluno");
+        btnCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroAlunoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("Escolha o tipo de cadastro");
@@ -117,6 +122,12 @@ public class frmCadastroVIEW extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_btnCadastroFuncionarioActionPerformed
+
+    private void btnCadastroAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroAlunoActionPerformed
+    frmCadastroAlunoVIEW objcadastroalunoview = new frmCadastroAlunoVIEW();
+    objcadastroalunoview.setVisible(true);
+   
+    }//GEN-LAST:event_btnCadastroAlunoActionPerformed
 
     /**
      * @param args the command line arguments

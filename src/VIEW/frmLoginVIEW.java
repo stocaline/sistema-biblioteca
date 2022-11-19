@@ -2,6 +2,7 @@ package VIEW;
 
 import DAO.FuncionarioDAO;
 import DAO.ProfessorDAO;
+import DAO.AlunoDAO;
 import DTO.UsuarioDTO;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -225,10 +226,10 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
                 FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
                 ProfessorDAO objprofessordao = new ProfessorDAO();
-
+                AlunoDAO objalunodao = new AlunoDAO();
                 ResultSet rsfuncionariodao = objfuncionariodao.autenticacaoFuncionario(objusuarioDTO);
                 ResultSet rsprofessordao = objprofessordao.autenticacaoProfessor(objusuarioDTO);
-
+                ResultSet rsalunodao = objalunodao.autenticacaoAluno(objusuarioDTO);
                 if (rsfuncionariodao.next()) {
                     controlador = 1;
                     frmFuncionarioVIEW objfrmfuncionarioview = new frmFuncionarioVIEW();
@@ -241,6 +242,13 @@ public class frmLoginVIEW extends javax.swing.JFrame {
                     controlador = 1;
                     frmProfessorVIEW objprofessorview = new frmProfessorVIEW();
                     objprofessorview.setVisible(true);
+
+                    dispose();
+                }
+                if (rsalunodao.next()) {
+                    controlador = 1;
+                    frmAlunoVIEW objalunoview = new frmAlunoVIEW();
+                    objalunoview.setVisible(true);
 
                     dispose();
                 }

@@ -94,7 +94,7 @@ public class frmProfessorVIEW extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(17, 17, 17)
                 .addComponent(btnEditarMeusDados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(btnAlugarObra)
