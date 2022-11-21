@@ -126,6 +126,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private void btnEntrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarSistemaActionPerformed
         try {
             Logar();
+            
         } catch (SQLException ex) {
             Logger.getLogger(frmLoginVIEW.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -230,9 +231,11 @@ public class frmLoginVIEW extends javax.swing.JFrame {
                 ResultSet rsfuncionariodao = objfuncionariodao.autenticacaoFuncionario(objusuarioDTO);
                 ResultSet rsprofessordao = objprofessordao.autenticacaoProfessor(objusuarioDTO);
                 ResultSet rsalunodao = objalunodao.autenticacaoAluno(objusuarioDTO);
+                
                 if (rsfuncionariodao.next()) {
                     controlador = 1;
                     frmFuncionarioVIEW objfrmfuncionarioview = new frmFuncionarioVIEW();
+                    objfrmfuncionarioview.setarUsuario(getNome_usuario(), getSenha_usuario());
                     objfrmfuncionarioview.setVisible(true);
 
                     dispose();
@@ -240,14 +243,16 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
                 if (rsprofessordao.next()) {
                     controlador = 1;
-                    frmProfessorVIEW objprofessorview = new frmProfessorVIEW();
-                    objprofessorview.setVisible(true);
+                   frmProfessorVIEW objprofessorview = new frmProfessorVIEW();
+                   objprofessorview.setarUsuario(getNome_usuario(), getSenha_usuario());
+                   objprofessorview.setVisible(true);
 
                     dispose();
                 }
                 if (rsalunodao.next()) {
                     controlador = 1;
                     frmAlunoVIEW objalunoview = new frmAlunoVIEW();
+                    objalunoview.setarUsuario(getNome_usuario(), getSenha_usuario());
                     objalunoview.setVisible(true);
 
                     dispose();

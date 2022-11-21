@@ -43,6 +43,29 @@ public class AlunoDAO {
         }
     }
 
+    public ArrayList<AlunoDTO> consultarTodosAlunos() {
+        String sql = "SELECT * FROM aluno";
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                AlunoDTO objalunodto = new AlunoDTO();
+                objalunodto.setId(rs.getInt("id"));
+                objalunodto.setNome(rs.getString("nome"));
+                objalunodto.setTipo(rs.getString("tipo"));
+                objalunodto.setIdLivro(rs.getInt("id_livro"));
+
+                lista.add(objalunodto);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "AlunoDAO Consultar" + erro);
+        }
+        return lista;
+    }
 
     public AlunoDTO consultaraluno(int id) {
         String sql = "SELECT * FROM aluno WHERE id = ?";
@@ -100,7 +123,6 @@ public class AlunoDAO {
         }
         return 0;
     }
-
 
     public ResultSet autenticacaoAluno(UsuarioDTO objusuarioDTO) {
         conn = new ConexaoDAO().conectaBD();

@@ -1,7 +1,9 @@
 package VIEW;
 
+import DAO.AlunoDAO;
 import DAO.FuncionarioDAO;
 import DAO.ProfessorDAO;
+import DTO.AlunoDTO;
 import DTO.FuncionarioDTO;
 import DTO.ProfessorDTO;
 import java.util.ArrayList;
@@ -185,14 +187,17 @@ public class frmAdminVIEW extends javax.swing.JFrame {
         try {
             FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
             ProfessorDAO objprofessordao = new ProfessorDAO();
+            AlunoDAO objalunodao = new AlunoDAO();
 
             DefaultTableModel model = (DefaultTableModel) tabelaUsuarios.getModel();
             model.setNumRows(0);
 
             int controladorListaFuncionario;
             int controladorListaProfessor;
+            int controladorListaAluno;
             ArrayList<FuncionarioDTO> listaFuncionario = objfuncionariodao.consultarTodosFuncionarios();
             ArrayList<ProfessorDTO> listaProfessor = objprofessordao.consultarTodosProfessores();
+            ArrayList<AlunoDTO> listaAluno = objalunodao.consultarTodosAlunos();
 
             for (controladorListaFuncionario = 0; controladorListaFuncionario < listaFuncionario.size(); controladorListaFuncionario++) {
                 model.addRow(new Object[]{
@@ -210,6 +215,14 @@ public class frmAdminVIEW extends javax.swing.JFrame {
                     listaProfessor.get(controladorListaProfessor).getIdLivro()
                 });
             }
+            for (controladorListaAluno = 0; controladorListaAluno < listaAluno.size(); controladorListaAluno++) {
+                model.addRow(new Object[]{
+                    listaAluno.get(controladorListaProfessor).getId(),
+                    listaAluno.get(controladorListaProfessor).getNome(),
+                    listaAluno.get(controladorListaProfessor).getTipo(),
+                    listaAluno.get(controladorListaProfessor).getIdLivro()
+                });
+            }
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Listar Valores VIEW" + erro);
@@ -219,6 +232,8 @@ public class frmAdminVIEW extends javax.swing.JFrame {
     private void consultarCampos() {
         String TIPO_FUNCIONARIO = "Funcionário";
         String TIPO_PROFESSOR = "Professor";
+        String TIPO_ALUNO = "Aluno";
+
         int setar = tabelaUsuarios.getSelectedRow();
         setId((int) tabelaUsuarios.getModel().getValueAt(setar, 0));
         String tipoUsuarioProcurado = tabelaUsuarios.getModel().getValueAt(setar, 2).toString();
@@ -235,28 +250,10 @@ public class frmAdminVIEW extends javax.swing.JFrame {
             objeditarprofessorview.mostrarProfessor(getId());
         }
 
+        if (TIPO_ALUNO.equals(tipoUsuarioProcurado)) {
+            frmEditarAlunoVIEW objeditaralunoview = new frmEditarAlunoVIEW();
+            objeditaralunoview.setVisible(true);
+            objeditaralunoview.mostrarAluno(getId());
+        }
     }
-
-//    private void consultarCampos() {
-//        String TIPO_FUNCIONARIO = "Funcionário";
-//        String TIPO_PROFESSOR = "Professor";
-//        int setar = tabelaUsuarios.getSelectedRow();
-//        int idUsuarioProcurado = (int) tabelaUsuarios.getModel().getValueAt(setar, 0);
-//        String tipoUsuarioProcurado = tabelaUsuarios.getModel().getValueAt(setar, 2).toString();
-//
-//        if (TIPO_FUNCIONARIO.equals(tipoUsuarioProcurado)) {
-//            FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-//            FuncionarioDTO funcionario = objfuncionariodao.consultarFuncionario(idUsuarioProcurado);
-//            txtTeste.setText(funcionario.getNome());
-//            frmEditarFuncionarioVIEW objeditarfuncionarioview = new frmEditarFuncionarioVIEW();
-//            objeditarfuncionarioview.setVisible(true);
-//        }
-//        
-//        if (TIPO_PROFESSOR.equals(tipoUsuarioProcurado)) {
-//            ProfessorDAO objprofessordao = new ProfessorDAO();
-//            ProfessorDTO professor = objprofessordao.consultarProfessor(idUsuarioProcurado);
-//            txtTeste.setText(professor.getNome());
-//        }
-//
-//    }
 }

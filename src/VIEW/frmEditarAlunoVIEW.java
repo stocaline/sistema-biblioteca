@@ -2,6 +2,7 @@ package VIEW;
 
 import DAO.AlunoDAO;
 import DTO.AlunoDTO;
+import static java.lang.System.exit;
 import javax.swing.JOptionPane;
 
 /**
@@ -89,7 +90,7 @@ public class frmEditarAlunoVIEW extends javax.swing.JFrame {
         });
 
         btnDeletar.setForeground(new java.awt.Color(255, 0, 0));
-        btnDeletar.setText("Deletar Funcionario");
+        btnDeletar.setText("Deletar Aluno");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeletarActionPerformed(evt);
@@ -214,13 +215,15 @@ public class frmEditarAlunoVIEW extends javax.swing.JFrame {
         if (validaCamposAluno() == true) {
             alterarAluno();
             JOptionPane.showMessageDialog(null, "Aluno Alterado com Sucesso");
+            
             dispose();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         excluirAluno();
-        JOptionPane.showMessageDialog(null, "Funcionário Deletado com Sucesso");
+        JOptionPane.showMessageDialog(null, "Aluno Deletado com Sucesso");
+        verificaExistencia();
         dispose();
 
     }//GEN-LAST:event_btnDeletarActionPerformed
@@ -351,4 +354,14 @@ public class frmEditarAlunoVIEW extends javax.swing.JFrame {
         objalunodao.excluirAluno(objalunodto);
     }
 
-}
+    private void verificaExistencia(){
+        int id = Integer.parseInt(txtId.getText());
+        AlunoDAO objalunodao = new AlunoDAO();
+        AlunoDTO objalunodto = objalunodao.consultaraluno(id);
+        
+        if(objalunodto.getTurma() == null) {
+            exit(0);
+        } 
+    }
+}  
+

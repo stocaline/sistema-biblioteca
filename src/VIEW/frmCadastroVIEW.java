@@ -124,9 +124,10 @@ public class frmCadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroFuncionarioActionPerformed
 
     private void btnCadastroAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroAlunoActionPerformed
-    frmCadastroAlunoVIEW objcadastroalunoview = new frmCadastroAlunoVIEW();
-    objcadastroalunoview.setVisible(true);
-   
+        frmCadastroAlunoVIEW objcadastroalunoview = new frmCadastroAlunoVIEW();
+        objcadastroalunoview.setVisible(true);
+
+        dispose();
     }//GEN-LAST:event_btnCadastroAlunoActionPerformed
 
     /**

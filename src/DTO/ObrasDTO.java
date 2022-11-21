@@ -1,6 +1,4 @@
-
 package DTO;
-
 
 public class ObrasDTO {
 
@@ -10,8 +8,9 @@ public class ObrasDTO {
     private String autores;
     private String editora;
     private String tipo;
+    private String status;
     private int idDono;
-    
+
     public int getId() {
         return id;
     }
@@ -19,7 +18,7 @@ public class ObrasDTO {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public String getTitulo() {
         return titulo;
     }
@@ -60,6 +59,14 @@ public class ObrasDTO {
         this.tipo = tipo;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public int getIdDono() {
         return idDono;
     }
@@ -68,8 +75,4 @@ public class ObrasDTO {
         this.idDono = idDono;
     }
 
-    
-    
-   
-    
 }

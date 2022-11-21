@@ -1,8 +1,10 @@
 package VIEW;
 
+import DAO.AlunoDAO;
 import DAO.FuncionarioDAO;
 import DAO.LivroDAO;
 import DAO.ProfessorDAO;
+import DTO.AlunoDTO;
 import DTO.LivroDTO;
 import DTO.ProfessorDTO;
 import java.util.ArrayList;
@@ -19,7 +21,6 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
 
     public frmFuncionarioVIEW() {
         initComponents();
-        setarUsuario();
         listarValoresUsuarios();
         listarValoresObras();
     }
@@ -98,7 +99,7 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "id","Tipo", "Titulo", "Autor", "id_dono"
+                "id","Tipo", "Titulo", "Autor", "status"
             }
         ));
         jScrollPane2.setViewportView(tabelaObras);
@@ -285,10 +286,8 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
     public void setId(int id) {
         this.id = id;
     }
-
-    private void setarUsuario() {
-        String nome = "1";
-        String senha = "1";
+    
+    public void setarUsuario(String nome, String senha) {
         FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
 
         setId(objfuncionariodao.consultarFuncionarioPorNomeSenha(nome, senha));
@@ -305,12 +304,14 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
     public void listarValoresUsuarios() {
         try {
             ProfessorDAO objprofessordao = new ProfessorDAO();
+            AlunoDAO objalunodao = new AlunoDAO();
 
             DefaultTableModel model = (DefaultTableModel) tabelaUsuarios.getModel();
             model.setNumRows(0);
 
             int controladorListaProfessor;
             ArrayList<ProfessorDTO> listaProfessor = objprofessordao.consultarTodosProfessores();
+            ArrayList<AlunoDTO> listaAluno = objalunodao.consultarTodosAlunos();
 
             for (controladorListaProfessor = 0; controladorListaProfessor < listaProfessor.size(); controladorListaProfessor++) {
                 model.addRow(new Object[]{
@@ -318,6 +319,15 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
                     listaProfessor.get(controladorListaProfessor).getNome(),
                     listaProfessor.get(controladorListaProfessor).getTipo(),
                     listaProfessor.get(controladorListaProfessor).getIdLivro()
+                });
+            }
+            
+            for (controladorListaProfessor = 0; controladorListaProfessor < listaAluno.size(); controladorListaProfessor++) {
+                model.addRow(new Object[]{
+                    listaAluno.get(controladorListaProfessor).getId(),
+                    listaAluno.get(controladorListaProfessor).getNome(),
+                    listaAluno.get(controladorListaProfessor).getTipo(),
+                    listaAluno.get(controladorListaProfessor).getIdLivro()
                 });
             }
 
@@ -342,7 +352,7 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
                     listaLivro.get(controladorListaLivro).getTipo(),
                     listaLivro.get(controladorListaLivro).getTitulo(),
                     listaLivro.get(controladorListaLivro).getAutores(),
-                    listaLivro.get(controladorListaLivro).getIdDono()
+                    listaLivro.get(controladorListaLivro).getStatus()
                 });
             }
 
@@ -361,6 +371,10 @@ public class frmFuncionarioVIEW extends javax.swing.JFrame {
             frmEditarProfessorVIEW objfrmeditarprofessorview = new frmEditarProfessorVIEW();
             objfrmeditarprofessorview.setVisible(true);
             objfrmeditarprofessorview.mostrarProfessor(id);
+        }else{
+            frmEditarAlunoVIEW objfrmeditaralunoview = new frmEditarAlunoVIEW();
+            objfrmeditaralunoview.setVisible(true);
+            objfrmeditaralunoview.mostrarAluno(id);
         }
     }
 

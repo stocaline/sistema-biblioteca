@@ -2,6 +2,7 @@ package VIEW;
 
 import DAO.FuncionarioDAO;
 import DTO.FuncionarioDTO;
+import static java.lang.System.exit;
 import javax.swing.JOptionPane;
 
 /**

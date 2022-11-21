@@ -16,6 +16,7 @@ public class ProfessorDAO {
     ResultSet rs;
     ArrayList<ProfessorDTO> lista = new ArrayList<>();
     ProfessorDTO professor;
+    int idProfessor;
 
     public void cadastrarProfessor(ProfessorDTO objprofessordto) {
         String sql = "INSERT INTO professor (nome, senha, endereco, email, cpf, matricula_professor, materia, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -66,6 +67,32 @@ public class ProfessorDAO {
         return lista;
     }
 
+    public int consultarProfessorPorNomeSenha(String nome, String senha) {
+        String sql = "SELECT id FROM professor WHERE nome = ? && senha = ?";
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nome);
+            pstm.setString(2, senha);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                ProfessorDTO objprofessordto = new ProfessorDTO();
+                objprofessordto.setId(rs.getInt("id"));
+                idProfessor = objprofessordto.getId();
+            }
+
+            return idProfessor;
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "AlunoDAO consultar por nome e senha: " + erro);
+        }
+        return 0;
+    }
+    
+    
     public ResultSet autenticacaoProfessor(UsuarioDTO objusuarioDTO) {
         conn = new ConexaoDAO().conectaBD();
 
